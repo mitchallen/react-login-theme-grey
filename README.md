@@ -30,20 +30,97 @@ LoginThemeGrey React component
 
 ## Usage
 
-1: Add this line near the top of your file (like ```src/App.js```):
+
+### Usage Example
+
+Take the code below and modify how the handleSubmit method acts to process the login info.
+
 
 ```
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import logo from './logo.svg';
+import './App.css';
+
 import LoginThemeGrey from '@mitchallen/react-login-theme-grey';
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoading: false,
+      status: this.props.defaultStatus || 'Login',
+      username: '',
+      password: '',
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+  }
+
+  validateForm() {
+    return this.state.username.length > 0
+      && this.state.password.length > 0;
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    this.setState({ 
+      status: this.props.succcessMessage , 
+      isLoading: false 
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <p className="App-intro">
+          To get started, edit <code>src/App.js</code> and save to reload.
+        </p>
+        <hr size="1" />
+        <LoginThemeGrey
+            handleChange={this.handleChange.bind(this)}
+            handleSubmit={this.handleSubmit.bind(this)}
+            validateForm={this.validateForm.bind(this)}
+            status={this.state.status}
+            isLoading={this.state.isLoading}
+            username={this.state.username}
+            password={this.state.password}
+        />
+        
+        <hr size="1" />
+      </div>
+    );
+  }
+}
+
+App.defaultProps = {
+  submitMessage: 'submitting ...',
+  succcessMessage: 'You are logged in!'
+}
+
+App.propTypes = {
+  userHasAuthenticated: PropTypes.func.isRequired,
+  cognitoUserPoolId: PropTypes.string.isRequired,
+  cognitoAppClientId: PropTypes.string.isRequired
+};
+
+export default App;
+
 ```
-
-__NOTE:__ LoginThemeGrey must be Capitalized or component won't render.
-
-2: Somewhere in the middle of the __render__ method add this line:
-
-```
-<LoginThemeGrey />
-```
-
 
 * * *
 
