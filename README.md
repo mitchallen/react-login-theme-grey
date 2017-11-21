@@ -75,7 +75,7 @@ class App extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     this.setState({ 
-      status: this.props.succcessMessage , 
+      status: this.props.successMessage , 
       isLoading: false 
     });
   }
@@ -109,7 +109,7 @@ class App extends Component {
 
 App.defaultProps = {
   submitMessage: 'submitting ...',
-  succcessMessage: 'You are logged in!'
+  successMessage: 'You are logged in!'
 }
 
 App.propTypes = {
@@ -203,6 +203,10 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * * *
 
 ## Version History
+
+#### Version 0.1.1
+
+* updated documentation
 
 #### Version 0.1.0 
 
