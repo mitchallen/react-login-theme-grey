@@ -1,6 +1,6 @@
 {
   "name": "@mitchallen/react-login-theme-grey",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "LoginThemeGrey component",
   "main": "build/index.js",
   "scripts": {
